@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>enter porgress</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"  />
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</head>
+
+<body>
+	
+	<div id='menu-bar'>
+		<div id='logo-kai'> 
+			<img  width='80px' src='../static/img/logo/top.webp'/>
+		</div>
+		<div>
+			<span>2021.20.24 | 13:28:30 🏠</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+	
+	<div id='menu-bar'>
+		<div id='contianer-button-h'>
+			<span>직접시간</span>
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='👨‍🔧작업자 관리' />
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='🖥️HBM' />			
+		</div>
+	</div>
+
+	<div id='contianer_mix'>
+		<span>작업목록</span>
+		<span>총 작업 건수 20건</span>
+	
+		<div id='contianer_h'>
+			<div id='card'>
+				<img  width='50px' src='../static/img/button/ready-green.jpg'/>
+				<input type='radio'></input>
+				<p>201099512<br>Gop_5360<p>
+			</div>
+			<div id='card'>
+				<img  width='50px' src='../static/img/button/ready-green.jpg'/>
+				<input type='radio'></input>
+				<p>201099512<br>Gop_5360<p>
+			</div>
+			<div id='card'>
+				<img  width='50px' src='../static/img/button/ready-green.jpg'/>
+				<input type='radio'></input>
+				<p>201099512<br>Gop_5360<p>
+			</div>
+			<div id='card'>
+				<img  width='50px' src='../static/img/button/ready-green.jpg'/>
+				<input type='radio'></input>
+				<p>201099512<br>Gop_5360<p>
+			</div>
+		</div>
+
+	</div>
+
+	<div id='contianer_h'>
+		<input type='button' value='실적입력' click='btn_enter_performance'/> 
+		<input type='button' value='공정완료' click='btn_process complete'/> 
+	</div>
+	
+</body>
+
+</html>

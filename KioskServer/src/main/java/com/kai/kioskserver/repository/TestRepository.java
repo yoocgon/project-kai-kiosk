@@ -1,22 +1,16 @@
 package com.kai.kioskserver.repository;
 
-import java.sql.Timestamp;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.query.Param;
-
-import entity.Test;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.kai.kioskserver.entity.Test;
 
 
-@NoRepositoryBean 
-public interface TestRepository extends CrudRepository<Test, Long> {
-
-//	List<Test> findById(long id);
-//	
-//	@Query("select Test from Test where id=:id")
-//	List<Test> findByIdUsingSql(@Param("id") long id);
-//	
-//	List<Test> findByIdAndCreate_dtLessThanOrderByAgeDesc(String name, Timestamp create_dt);
+ @Repository
+public interface TestRepository extends JpaRepository<Test, Integer> {
+		//
+		@Query(value = "select * from db_kai_kiosk.public.tb_test", nativeQuery = true)
+		public List<Test> selectAllUsingSql();
 }
+

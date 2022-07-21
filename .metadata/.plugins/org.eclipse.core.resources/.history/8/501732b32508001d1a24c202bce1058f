@@ -1,0 +1,34 @@
+package com.kai.kioskserver.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.kai.kioskserver.entity.Test;
+import com.kai.kioskserver.repository.TestRepository;
+
+import java.sql.Timestamp;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+@Service
+public class TestService {
+	//
+	Logger logger = LoggerFactory.getLogger(KioskController.class);
+	//
+    @Autowired
+    private TestRepository testRepository;
+	//
+	public Test getTestResult(){
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		Optional<Test> optional = testRepository.findById(1);
+		if (optional.isPresent()) {
+			Test test = optional.get();
+			return test;
+		} else {
+			return new Test(0, "test message", timestamp, timestamp)
+		}
+	}
+}

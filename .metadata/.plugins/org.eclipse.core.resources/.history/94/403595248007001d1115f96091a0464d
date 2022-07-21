@@ -1,0 +1,31 @@
+package com.kai.kioskserver.controller;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kai.kioskserver.repository.TestRepository;
+
+import entity.Test;
+
+
+@Service
+public class TestService {
+	
+	@Autowired
+	private TestRepository testRepository;
+	//
+	public List<Test> getTest() {
+		//
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		List<Test> tests = new ArrayList<Test>();
+		tests.add(new Test(0, "test message", timestamp, timestamp));
+		// List<Test> tests = testRepository.findById((long)1);
+		// List<Test> tests2 = testRepository.findTestByID(0);
+		return tests;
+	}
+}

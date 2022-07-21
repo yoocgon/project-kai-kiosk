@@ -1,0 +1,16 @@
+package com.kai.kioskserver.controller;
+
+import org.springframework.stereotype.Service;
+import Entity.Test;
+
+
+@Service
+public class TestService {
+	
+	public Test getTest() {
+		
+		Test test = new Test(0, "test");
+		return test;
+	}
+}
+

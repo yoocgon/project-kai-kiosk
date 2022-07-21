@@ -1,0 +1,27 @@
+package com.kai.kioskserver.controller;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kai.kioskserver.repository.TestRepository;
+
+import entity.Test;
+
+
+@Service
+public class TestService {
+	
+	
+	private TestRepository testRepository;
+	//
+	public List<Test> getTest() {
+		//
+		// Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		// Test test = new Test((long)0, "test message", timestamp, timestamp);
+		List<Test> tests = testRepository.findById((long)1);
+		
+		return tests;
+	}
+}

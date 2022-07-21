@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+	<style>
+		.menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: black;
+			color: white;
+		}
+
+		.logo-kai {
+			display: flex;
+		}
+
+		.menu-bar-content {
+			margin-left: auto;
+			/* flex: 0 0 auto */
+		}
+
+		.flex-item-gnb {
+			margin-left: auto;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class='menu-bar'>
+		<div class='logo-kai'>
+			<img width='80px' src='../static/img/logo/top.webp' />
+		</div>
+		<div class=''>
+			<span>2021.20.24 | 13:28:30 🏠</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div id='img'>
+		<img id='s' width='100%' src='../static/img/photo/kai.jpeg' />
+	</div>
+
+	<br>
+	<br>
+
+	<div id='img'>
+		<img id='s' width='100%' src='../static/img/photo/nfc.jpg' />
+	</div>
+
+</body>
+
+</html>

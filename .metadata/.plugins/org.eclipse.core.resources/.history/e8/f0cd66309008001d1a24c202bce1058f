@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>enter porgress</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/index.css}"  />
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</head>
+
+<body>
+	
+	<div id='menu-bar'>
+		<div id='logo-kai'> 
+			<img  width='80px' src='../static/img/logo/top.webp'/>
+		</div>
+		<div>
+			<span>2021.20.24 | 13:28:30 🏠</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+	
+	<div>
+		<div>
+			<span>실적입력 [작업시작]</span>
+			<input id='btn-manage-workers' type='button' onclick='btnClose()' value='X' />
+		</div>
+	</div>
+
+	<div id='contianer_mix'>
+		<span>작업내용</span>
+		<input type='text' value='order number 201099512'/>
+		<input type='text' value='GOP 5360'/>
+		<input type='button' value='실적입력' click='btn_change_workers()'/> 
+
+		<span>작업내용</span>
+		<input type='text' value='order number 201099512'/>
+		<input type='text' value='GOP 5360'/>
+		<input type='button' value='실적입력' click='btn_change_workers()'/> 
+
+		<span>작업내용</span>
+		<input type='text' value='order number 201099512'/>
+		<input type='text' value='GOP 5360'/>
+		<input type='button' value='실적입력' click='btn_change_workers()'/> 
+	</div>
+	
+	<div id='contianer_h'>
+		<input type='button' value='취소' click='btnCancle()'/> 
+		<input type='button' value='작업시작' click='btnStartWork()'/> 
+	</div>
+	
+</body>
+
+</html>

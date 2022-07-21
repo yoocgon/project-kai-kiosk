@@ -1,0 +1,5 @@
+package com.kai.kioskserver.service;
+
+public class KioskService {
+
+}

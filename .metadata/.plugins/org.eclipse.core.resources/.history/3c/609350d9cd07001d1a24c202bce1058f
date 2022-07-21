@@ -1,0 +1,114 @@
+package com.kai.kioskserver.controller;
+
+import javax.annotation.Resource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.google.gson.JsonObject;
+import com.kai.kioskserver.entity.Test;
+import com.kai.kioskserver.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//import lombok.extern.slf4j.Slf4j;
+//import java.util.List;
+
+
+@Controller
+@RequestMapping("/kiosk")
+public class KioskController {
+	//
+	Logger logger = LoggerFactory.getLogger(KioskController.class);
+	//
+	@Resource(name="testService")
+	private TestService testService;
+	//
+	// @Autowired 
+	public KioskController(TestService testService) {
+		this.testService = testService;
+	}
+	//
+	// pages
+	//
+    @GetMapping("/page/test")
+    public String sayHello(Model model) {
+        model.addAttribute("say", "Hello");
+        return "test";
+    }
+	//
+    @GetMapping("/page/index")
+    public String getPageIndex() {
+        return "index";
+    }
+	//
+    @GetMapping("/page/login")
+    public String getPagelogin() {
+        return "login";
+    }
+	//
+    @GetMapping("/page/job-list")
+    public String getPageJobList() {
+        return "job_list";
+    }
+	//
+    @GetMapping("/page/arrange-workers")
+    public String getPageArrangeWorkers() {
+        return "arrange_workers";
+    }
+	//
+    @GetMapping("/page/arrange-equipment")
+    public String getPageArrangeEquipment() {
+        return "arrange_equipment";
+    }
+	//
+    @GetMapping("/popup/enter-progress")
+    public String getPopupEnterProgress() {
+        return "popup_enter_progress";
+    }
+    //
+    // api get
+    // 
+    @ResponseBody
+    @RequestMapping("/test")
+    public Test getTest() {
+    	Test test = testService.getTestResult();
+    	logger.debug(test.toString());
+    	return test;
+    }
+    //
+    @ResponseBody
+    @RequestMapping("/user")
+    public User getUser() {
+		User user = new User(0, "gony");
+    	logger.debug(user.toString());
+    	return user;
+    }
+    //
+    @ResponseBody
+    @RequestMapping("/mock/get-job-list")
+    public String getJobList() {
+    	JsonObject obj = new JsonObject();
+       obj.addProperty("sample1", "sample1");
+       obj.addProperty("sample2", "sample2");
+       JsonObject data = new JsonObject();
+       data.addProperty("data1", "data1");
+       data.addProperty("data2", "data2");
+       obj.add("data", data);
+       obj.toString();
+    	logger.debug(obj.toString());
+    	return obj.toString();
+    }
+
+    //
+    // api post
+    //
+    @PostMapping(value="/kiosk")
+    public void process(@RequestBody com.fasterxml.jackson.databind.JsonNode payload) {
+        System.out.println(payload);
+    }
+}
+
+

@@ -1,0 +1,23 @@
+package Entity;
+
+import lombok.*;
+import javax.persistence.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity(name="tb_test")
+public class TestVo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private String message;
+    private Timestamp create_dt;
+    private Timestamp update_dt;
+
+    @Builder
+    public MemberVo(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}

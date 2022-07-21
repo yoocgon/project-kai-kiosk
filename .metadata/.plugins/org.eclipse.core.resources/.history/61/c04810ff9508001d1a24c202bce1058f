@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>job list</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+	<style>
+		.menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: black;
+			color: white;
+		}
+
+		.menu-bar-left {
+			display: flex;
+		}
+
+		.menu-bar-right {
+			margin-left: auto;
+		}
+
+		.main-menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			padding-bottom: 4px;
+
+			border-width: 0px 0px 2px 0px;
+			border-style: solid;
+		}
+		
+		.main-menu-bar-2 {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+		}
+
+		.contianer_card {
+			display: flex;
+			flex-flow: row wrap;
+		}
+
+		.card {
+			border-style: solid;
+			border-radius: 5px;
+			margin: 3px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class='menu-bar'>
+		<div class='menu-bar-left'>
+			<img width='80px' src='../static/img/logo/top.webp' />
+		</div>
+		<div class='menu-bar-right'>
+			<span>2021.20.24 | 13:28:30</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+
+	<div class='main-menu-bar'>
+		<div class='menu-bar-left'>
+			<span>||직접시간</span>
+		</div>
+		<div class='menu-bar-right'>
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='👨‍🔧작업자 관리' />
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='🖥️HBM' />
+		</div>
+	</div>
+
+	<div class='main-menu-bar-2'>
+		<span class='menu-bar-left'>작업목록</span>
+		<span class='menu-bar-right'>총 작업 건수 20건</span>
+	</div>
+
+	<div class='contianer_card'>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div id='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+		<div id='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+		<div id='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+	</div>
+
+	<div id='contianer_h'>
+		<input type='button' value='실적입력' click='btn_enter_performance' />
+		<input type='button' value='공정완료' click='btn_process complete' />
+	</div>
+
+</body>
+
+</html>

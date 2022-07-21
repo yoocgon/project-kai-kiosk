@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>add workers</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+	<style>
+		.menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: black;
+			color: white;
+		}
+
+		.menu-bar-left {
+			display: flex;
+		}
+
+		.menu-bar-right {
+			margin-left: auto;
+		}
+
+		.main-menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			padding-bottom: 4px;
+
+			border-width: 0px 0px 2px 0px;
+			border-style: solid;
+		}
+
+		.main-menu-bar-2 {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+		}
+
+		.contianer-card {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: lightgray;
+			border-radius: 5px;
+			margin: 10px;
+		}
+
+		.card {
+			background-color: white;
+			border-style: solid;
+			border-color: white;
+			border-radius: 5px;
+			margin: 10px;
+			padding: 5px;
+		}
+
+		.contianer-button {
+			display: flex;
+			flex-basis: 0;
+			flex-grow: 1;
+			margin: 10px;
+		}
+		
+		.btn-bottom {
+			width: 100%;
+			height: 3em;
+			margin: 10px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class='menu-bar'>
+		<div class='logo-kai'>
+			<img width='80px' src='../static/img/logo/top.webp' />
+		</div>
+		<div class='menu-bar-content'>
+			<span>2021.20.24 | 13:28:30</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+
+	<div class='main-menu-bar'>
+		<div class='menu-bar-left'>
+			<span>직접시간</span>
+		</div>
+		<div class='menu-bar-right'>
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='👨‍🔧작업자 관리' />
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='🖥️HBM' />
+		</div>
+	</div>
+
+
+
+	<div id='contianer_mix'>
+		<span>작업목록</span>
+		<span>총 작업 건수 20건</span>
+
+		<div id='contianer_h'>
+
+			<div id='contianer_h'>
+				<span>작업자</span>
+				<input type='radio'>[조장]홍길동</input>
+				<input type='radio'>임나연</input>
+				<input type='radio'>장원영</input>
+				<input type='radio'>전소미</input>
+				<span>작업자</span>
+			</div>
+
+			<div id='contianer_h'>
+				<span>생산직2조 [MY Team]</span>
+				<input type='radio'>[조장]홍길동</input>
+				<input type='radio'>임나연</input>
+				<input type='radio'>장원영</input>
+				<input type='radio'>전소미</input>
+				<input type='radio'>유정연</input>
+				<input type='radio'>김다현</input>
+				<input type='radio'>손재영</input>
+				<input type='radio'>박지효</input>
+				<span>조원 총 8명</span>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id='contianer_h'>
+		<span> 4명 </span>
+		<input type='button' value='다음' click='btn_next' />
+	</div>
+
+</body>
+
+</html>

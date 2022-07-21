@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>API Test</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+	<style>
+
+	</style>
+
+</head>
+
+<body>
+
+	<div class='card'>
+		<h1>Step 2. RFID Tag 수신</h1>
+		<pre id='pre-step-2'>
+{
+	"result":true, 
+	"count":42
+}
+		</pre>
+		<input type='button' value='send' click='loadPageIndex()'/>
+		<input id='input-step-2' type='text'></input> 
+	</div>
+
+	<script>
+	//
+	function loadPageIndex() {
+		let textJson = document.getElementById('pre-step-2').value
+		let json = JSON.parse(textJson)
+		let url = 'http://localhost:8080/kiosk/test/all'
+  		let response = await fetch(url)
+  		let content = await response.json()
+  		
+  		console.log("Log>>> (response) ", content) 			
+	}		
+	</script>
+
+</body>
+
+</html>

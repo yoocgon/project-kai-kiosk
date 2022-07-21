@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>API Test</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+	<style>
+
+	</style>
+
+</head>
+
+<body>
+
+	<div class='card'>
+		<h1>Step 2. RFID Tag 수신</h1>
+		<pre id='pre-step-2'>
+{
+"result":true,
+"count":42
+}
+		</pre>
+		<input type='button' value='send' onclick='loadPageIndex()' />
+		<input id='input-step-2' type='text'></input>
+	</div>
+
+	<script>
+		//
+		function loadPageIndex() {
+			console.log('API TEST>>> (Step 2. RFID Tag 수신)')
+			let textJson = document.getElementById('pre-step-2').textContent
+			console.log('API TEST>>> (text json)')
+			console.log(textJson)
+			let data = JSON.parse(textJson)
+			console.log('API TEST>>> (send json)')
+			console.log(data)
+			let url = 'http://localhost:8080/kiosk/test/all'
+			// fetch(url, {
+			//	method: 'GET',
+			//	headers: {
+			//		'Content-Type': 'application/json',
+			//	},
+			//	body: JSON.stringify(data),
+			// })
+			//
+			fetch(url, {
+				method: 'GET',
+				mode: 'no-cors',
+				cache: 'no-cache',
+				credentials: 'same-origin'
+			}).then((response) => {
+				console.log('API TEST>>> (response)')
+				console.log(response)
+				response.json()	
+			}).then((data) => {
+				console.log('API TEST>>> (recive)')
+				console.log(str(data))
+				let textJson = document.getElementById('input-step-2').textContent = data
+			})
+			.catch((error) => {
+				console.error('실패:', error)
+			})
+		}		
+	</script>
+
+</body>
+
+</html>

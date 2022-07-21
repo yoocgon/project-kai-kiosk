@@ -1,0 +1,27 @@
+package com.kai.kioskserver.controller;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
+import org.springframework.stereotype.Service;
+
+import entity.Test;
+
+
+@Service
+public class TestService {
+	
+	//
+	//	public Test getTest() {
+	//		Test test = new Test(0, "test", );
+	//		return test;
+	//	}
+
+	//
+	public Test getTest() {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Test test = new Test(0, "test", timestamp, timestamp);
+		return test;
+	}
+}

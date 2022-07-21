@@ -1,0 +1,10 @@
+
+spring:
+	profiles: local
+	
+logging:
+	pattern:
+		console: "[%d{HH:mm:ss.SS}][%-5level][%logger.%method:line%line] - %msg%n"
+	level:
+		org:
+			springframework: DEBUG

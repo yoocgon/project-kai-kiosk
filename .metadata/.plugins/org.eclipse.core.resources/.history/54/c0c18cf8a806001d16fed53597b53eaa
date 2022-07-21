@@ -1,0 +1,27 @@
+package Entity;
+
+import lombok.*;
+import java.sql.Time;
+import javax.persistence.*;
+
+//@AllArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
+@Data
+@Entity(name="tb_test")
+public class Test {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String message;
+    private Time create_dt;
+    private Time update_dt;
+
+    @Builder
+    public Test(int id, String message, Time create_dt, Time update_dt) {
+        this.id = id;
+        this.message = message;
+        this.create_dt = create_dt;
+        this.update_dt = update_dt; 
+    }
+}

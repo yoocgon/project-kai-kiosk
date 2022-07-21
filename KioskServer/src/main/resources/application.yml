@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db_kai_kiosk
+    username: gony
+    password: asdf
+  devtools:
+    livereload:
+       enabled: true
+  freemarker:
+    cache: false
+  thymeleaf:
+     prefix : classpath:templates/
+     suffix : .html
+     cache : false
+  jpa:
+    show-sql: true 
+---
+logging:
+  pattern:
+    console: "%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n"
+    file: "%-4relative [%thread] %-5level %logger{35} - %msg%n"
+  logback:
+    rollingpolicy:
+      file-name-pattern: "${LOG_FILE}.%d{yyyy-MM-dd}_%i.zip"
+  file:
+    name: logs
+    max-history: 7
+    max-size: 5KB
+    total-size-cap: 1MB
+  level:
+    '[com.kai.kioskserver]': debug

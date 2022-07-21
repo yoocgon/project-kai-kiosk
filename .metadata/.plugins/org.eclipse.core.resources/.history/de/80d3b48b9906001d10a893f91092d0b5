@@ -1,0 +1,6 @@
+
+# application.properties
+spring.datasource.hikari.maximum-pool-size=4
+spring.datasource.url=jdbc:postgresql://localhost:5432/springboot
+spring.datasource.username=saelobi
+spring.datasource.password=pass
