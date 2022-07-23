@@ -4,39 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kai.kioskserver.entity.Test;
 import com.kai.kioskserver.repository.TestRepository;
-
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @Service
 public class TestService {
 	//
 	Logger logger = LoggerFactory.getLogger(KioskController.class);
+	
 	//
-    @Autowired
-    private TestRepository testRepository;
+	@Autowired
+	private TestRepository testRepository;
+
+	//
+	public void insertPostJson(String strJson) {
+		JSONObject jObject = new JSONObject(strJson);
+		Boolean result = jObject.getBoolean("result");
+		int count = jObject.getInt("count");
+	}
+
 	//
 	@SuppressWarnings("finally")
-	public List<Test> getTestAll(){
+	public List<Test> getTestAll() {
 
 		List<Test> tests = null;
-		try 
-		{
+		try {
 			tests = testRepository.selectAllUsingSql();
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			logger.debug(e.toString());
 			tests = new ArrayList<Test>();
-		}
-		finally {
+		} finally {
 			return tests;
 		}
 	}
 }
-				
+
 //		Test test = null;
 //		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 //		try 
@@ -54,14 +59,14 @@ public class TestService {
 //			return test;
 //		}
 
-		//
-		// Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		//
-		// Test test = testRepository.findById(1);
-		// List<Test> test = testRepository.findById(1);
-		//
-		// return test;
-		
+//
+// Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//
+// Test test = testRepository.findById(1);
+// List<Test> test = testRepository.findById(1);
+//
+// return test;
+
 //		List<Test> listTest = testRepository.findByIdUsingSql(1);
 //		Test test = listTest.get(0);
 //		return test;
