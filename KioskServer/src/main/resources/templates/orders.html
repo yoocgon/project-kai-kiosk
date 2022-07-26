@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>job list</title>
+
+	<style>
+		.menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: black;
+			color: white;
+		}
+
+		.menu-bar-left {
+			display: flex;
+		}
+
+		.menu-bar-right {
+			margin-left: auto;
+		}
+
+		.main-menu-bar {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			padding-bottom: 4px;
+
+			border-width: 0px 0px 2px 0px;
+			border-style: solid;
+		}
+
+		.main-menu-bar-2 {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: white;
+		}
+
+		.contianer-card {
+			display: flex;
+			flex-flow: row wrap;
+			background-color: lightgray;
+			border-radius: 5px;
+			margin: 10px;
+		}
+
+		.card {
+			background-color: white;
+			border-style: solid;
+			border-color: white;
+			border-radius: 5px;
+			margin: 10px;
+			padding: 5px;
+		}
+
+		.contianer-button {
+			display: flex;
+			flex-basis: 0;
+			flex-grow: 1;
+			margin: 10px;
+		}
+
+		.btn-bottom {
+			width: 100%;
+			height: 3em;
+			margin: 10px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class='menu-bar'>
+		<div class='menu-bar-left'>
+			<img width='80px' src='../static/img/logo/top.webp' />
+		</div>
+		<div class='menu-bar-right'>
+			<span>2021.20.24 | 13:28:30</span>
+			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+		</div>
+	</div>
+
+	<div class='main-menu-bar'>
+		<div class='menu-bar-left'>
+			<span>||직접시간</span>
+		</div>
+		<div class='menu-bar-right'>
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='👨‍🔧작업자 관리' />
+			<input id='btn-manage-workers' type='button' onclick='btnManageWorkers()' value='🖥️HBM' />
+		</div>
+	</div>
+
+	<div class='main-menu-bar-2'>
+		<span class='menu-bar-left' style='font-size:large;'>작업목록</span>
+		<span class='menu-bar-right' style='font-size:medium;'>총 작업 건수 20건</span>
+	</div>
+
+	<div class='contianer-card'>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+		<div class='card'>
+			<img width='50px' src='../static/img/button/ready-green.jpg' />
+			<input type='radio'></input>
+			<p>201099512<br>Gop_5360
+			<p>
+		</div>
+
+	</div>
+
+	<div class='contianer-button'>
+		<input class='btn-bottom' type='button' value='실적입력' click='btn_enter_performance()' />
+		<input class='btn-bottom' type='button' value='공정완료' click='btn_process complete()' />
+	</div>
+
+
+	<script>
+	
+		//
+		var sendOrderList = {
+			orders: [
+				{ runm: 1, order: 'Order aaaa' },
+				{ runm: 2, order: 'Order aaaa' },
+				{ runm: 3, order: 'Order aaaa' },
+				{ runm: 4, order: 'Order aaaa' },
+				{ runm: 5, order: 'Order aaaa' },
+				{ runm: 6, order: 'Order aaaa' },
+				{ runm: 7, order: 'Order aaaa' },
+		]}
+		//
+		var receveOrderList = ""
+		//
+		function getJobList() {
+			let url = 'http://localhost:8080/kiosk/post/insert/order-list'
+			fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: orderList,
+			}).then((response) => {
+				return response.json()
+			}).then((data) => {
+				receveOrderList = data
+			}).catch((error) => {
+				console.error('실패:', error)
+			})
+		}		
+		//
+		window.onload = function () {
+			getJobList()
+		}
+
+	</script>
+
+</body>
+
+</html>

@@ -1,18 +1,95 @@
 
 
--- public.tb_test definition
 
--- Drop table
 
--- DROP TABLE public.tb_test;
+-- -------------------------------------------------------------------------------------------
 
-CREATE TABLE public.tb_test (
-	id serial4 NOT NULL,
-	message varchar(100) NULL,
-	create_dt timestamp NULL DEFAULT now(),
-	update_dt timestamp NULL DEFAULT now(),
-	CONSTRAINT tb_test_pkey PRIMARY KEY (id)
+CREATE TABLE db_kai_kiosk.public.tb_test ( 
+	id serial4 NOT NULL, 
+	message varchar(100) NULL, 
+	deleted varchar NOT NULL DEFAULT FALSE,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp DEFAULT NULL
 );
+
+DROP TABLE db_kai_kiosk.public.tb_test;
+
+INSERT INTO public.tb_test(
+message, create_dt, update_dt)
+VALUES(
+'', now(), now()
+);
+
+-- -------------------------------------------------------------------------------------------
+
+CREATE TABLE public.tb_order_tag_history (
+	id serial4 NOT NULL,
+	tag_device_type text NULL,
+	uid text NULL,
+	deleted varchar NOT NULL DEFAULT FALSE,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp DEFAULT null,
+	CONSTRAINT tb_order_tag_history_pk PRIMARY KEY (id)
+);
+CREATE INDEX tb_order_tag_history_uid_idx ON public.tb_order_tag_history USING btree (uid);
+
+DROP TABLE public.tb_order_tag_history;
+
+-- -------------------------------------------------------------------------------------------
+
+CREATE TABLE public.tb_order_tag_data (
+	tag_id text NOT NULL,
+	tag_device_type text not NULL,
+	ip text NULL,
+	uid text NULL,
+	serial text NULL,
+	context text NULL,
+	deleted varchar NOT NULL DEFAULT FALSE,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp DEFAULT NULL
+);
+
+DROP TABLE public.tb_order_tag_data;
+
+-- -------------------------------------------------------------------------------------------
+
+CREATE TABLE public.tb_user_tag_history (
+	id serial4 NOT NULL,
+	tag_device_type text NULL,
+	uid text NULL,
+	deleted varchar NOT NULL DEFAULT FALSE,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp DEFAULT null,
+	CONSTRAINT tb_order_tag_history_pk PRIMARY KEY (id)
+);
+CREATE INDEX tb_order_tag_history_uid_idx ON public.tb_order_tag_history USING btree (uid);
+
+DROP TABLE public.tb_order_tag_history;
+
+
+
+-- -------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE public.	tb_kiosk_job_list
 (
