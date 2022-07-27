@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Spring boot</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/sample.css}" />
+	<!--<link rel="stylesheet" type="text/css" href="css/sample.css?after" />-->
+</head>
+<body>
+	<header>
+		<img class="logo_default" src="/img/logo.png" />
+		<div style="display: flex; align-items: flex-end">
+			<p id='clock' class="header_time">2022.07.20 | 13:28:30</p>
+			<img class="logo_home" src="/img/logo_home.png" alt="" onclick='btnHome()'/>
+		</div>
+	</header>
+	<main>
+		<div class="main__top">
+			<div class="main__top--left">
+				<div style="width: 8px; height: 40px; background-color: #313B44"></div>
+				<span>직접시간</span>
+			</div>
+			<div class="main__top--right">
+				<div class="BG" onclick='btnManageWorker()'>
+					<img src="/img/logo_worker.png" alt="" style="width: 50px; height: 50px" />
+					<span class="header">작업자 관리</span>
+				</div>
+				<div class="BG" onclick='btnTaskCenter()'>
+					<img src="/img/logo_tc.png" alt="" style="width: 50px; height: 50px" />
+					<span class="header">Task Center</span>
+				</div>
+			</div>
+		</div>
+		<div class="main__container">
+			<div style="width: 980px; height: 2px; background-color: #28323B"></div>
+			<div class="main__container--header">
+				<p id="main__header" class="left"></p>
+				<p id='total' class="right"></p>
+			</div>
+			<div id="workList" class="main__container--body"></div>
+			<ul id="pagination" class="pagination__container"></ul>
+			<div class="main__container--footer">
+				<div id="footer--left" class="footer__btn">
+					<span id="footer--left--cnt" class='footer__btn--count'></span>
+					<span id="footer--left--text"></span>
+				</div>
+				<div class="footer__btn">
+					<span>공정완료</span>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
+<script>
+	//
+	var pageData = ''
+	var selectedPage = 1
+	var totalPage = 1
+	//
+	function fetchOrders() {
+		// //
+		// console.log('LOG>>> (func) fetchOrders')
+		// //
+		// const data = {
+		// 	request: 'orders'
+		// }
+		// //
+		// const url = 'http://localhost:8080/api/orders'
+		// //
+		// fetch(url, {
+		// 	method: 'POST',
+		// 	headers: {'Content-Type': 'application/json', },
+		// 	body: JSON.stringify(data)
+		// }).then((response) => {
+		// 	return response.json()
+		// }).then((data) => {
+		// 	console.log('LOG>>> (data)')
+		// 	console.log(data)
+		// 	pageData = data
+		// }).catch((error) => {
+		// 	console.error('실패:', error)
+		// })
+		//
+		pageData = {
+			orders: [
+				{ order_number: '200943174', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943175', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943176', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943177', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943178', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943179', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943180', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943181', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943182', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943183', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943184', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943185', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943186', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943187', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943188', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943218', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943219', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943220', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943221', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943222', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943223', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943224', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943225', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943226', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943227', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943228', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943229', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943230', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943231', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943232', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943233', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943234', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943235', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943236', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943237', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943238', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943239', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943240', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943241', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943242', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943243', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943244', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943245', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943246', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943247', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943248', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943249', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943250', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943251', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943252', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943253', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943254', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943255', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943256', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943257', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943258', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200943259', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200943260', GOP: 'UW00', state: 'READY', selected: false },
+				{ order_number: '200944729', GOP: '9630', state: 'READY', selected: false },
+				{ order_number: '200944729', GOP: '9630', state: 'READY', selected: false }
+			]
+		}
+	}
+	//
+	function truncateTagHistory() {
+		//
+		console.log('LOG>>> (func) truncateTagHistory')
+		//
+		const data = {
+		 	request: 'truncate'
+		}
+		//
+		const url = 'http://localhost:8080/api/tag/truncate'
+		//
+		fetch(url, {
+			method: 'POST',
+		 	headers: {'Content-Type': 'application/json', },
+		 	body: JSON.stringify(data)
+		 }).then((response) => {
+		 	return response.json()
+		 }).then((data) => {
+			console.log(data)
+		 }).catch((error) => {
+		 	console.error('실패:', error)
+		 })
+	}
+	//
+	function fetchTagOrders() {
+		//
+		console.log('LOG>>> (func) fetchOrders')
+		//
+		const data = {
+		 	request: 'orders'
+		}
+		//
+		const url = 'http://localhost:8080/api/tagged'
+		//
+		fetch(url, {
+			method: 'POST',
+		 	headers: {'Content-Type': 'application/json', },
+		 	body: JSON.stringify(data)
+		 }).then((response) => {
+		 	return response.json()
+		 }).then((tags) => {
+		 	tags.forEach(tag => { 
+				console.log('LOG>>> (tag contents) ', tag.contents)
+				rfidTagging(tag.contents)
+			})
+			//
+			render()
+			//
+		 }).catch((error) => {
+		 	console.error('실패:', error)
+		 })
+		//
+	}
+	//
+	function rfidTagging(id){
+		//
+		console.log('Log>>> (func) rfidTagging')
+		//
+		let orders = pageData['orders']
+		orders.forEach(order => {
+			if (order['order_number'] == id) {
+				//
+				console.log('Log>>> (selected order number) ', order['order_number'])
+				if(order['selected'] == false)
+					order['selected'] = true
+				// else
+					// order['selected'] = false
+			}
+		})
+		//
+		// render()
+	}
+	//
+	function btnHome(){
+	//
+		window.location.assign('/')
+		console.log('Log>>> (func) btnHome')
+	}
+	//
+	function btnManageWorker(){
+		//
+		console.log('Log>>> (func) btnManageWorker')
+	}
+	//
+	function btnTaskCenter(){
+		//
+		console.log('Log>>> (func) btnTaskCenter')
+	}
+	//
+	function pageBefore() {
+		//
+		console.log('Log>>> (func) pageBefore')
+		//
+		selectedPage = selectedPage - 1
+		if (selectedPage < 1)
+			selectedPage = 1
+		console.log('Log>>> (selected page) ', selectedPage)
+		render()
+	}
+	//
+	function pageNext() {
+		//
+		console.log('Log>>> (func) pageNext')
+		//
+		selectedPage = selectedPage + 1
+		if (selectedPage > totalPage)
+			selectedPage = totalPage
+		console.log('Log>>> (selected page) ', selectedPage)
+		render()
+	}
+	//
+	function selectPage(num) {
+		//
+		console.log('Log>>> (func) selectPage')
+		//
+		selectedPage = num
+		console.log('Log>>> (num) ', selectedPage)
+		render()
+	}
+	//
+	//
+	function render() {
+		//
+		console.log('Log>>> (func) render')
+		//
+		let elemCardContianer = document.getElementById("workList")
+		let elemPagination = document.getElementById("pagination")
+		let elemTotalOrders = document.getElementById("total")
+		elemCardContianer.innerHTML = ''
+		elemPagination.innerHTML = ''
+		//
+		// render cards
+		//
+		let orders = pageData['orders']
+		let ordersDraw = []
+		totalPage = parseInt(orders.length / 20 + 1)
+		console.log('Log>>> (total pages) ', totalPage)
+		//
+		elemTotalOrders.textContent = "총 작업 건수 " + orders.length + " 건"
+		//
+		let cardsHtml = ''
+		let card_rendered = 0
+		let card_pointer = 0
+		//
+		orders.forEach(order => {
+			if (order['selected'] == true)
+				ordersDraw.push(order)
+		})
+		//
+		orders.forEach(order => {
+			if (order['selected'] == false)
+				ordersDraw.push(order)
+		})
+		//
+		// console.log('Log>>> (orders)')
+		// console.log(ordersDraw)
+		//
+		while(card_rendered < 20)
+		{
+			if((selectedPage-1) * 20 + card_rendered >= ordersDraw.length)
+				break
+			//
+			let card = ordersDraw[(selectedPage-1) * 20 + card_rendered]
+			let cardHtml = formatCard.replace('{order_number}', card['order_number'])
+			cardHtml = cardHtml.replace('{GOP}', card['GOP'])
+			cardHtml = cardHtml.replace('{state}', card['state'])
+			
+			// Card selected CSS 
+			if(card['selected'] == true) {
+				
+				cardHtml = cardHtml.replace('class="orderlist"', 'class="orderlist selected"')
+				cardHtml = cardHtml
+					.replace('class="orderlist--radiobtn"', 'class="orderlist--radiobtn" checked')
+			
+			}
+			
+			// console.log('Log>>> (render) ')
+			// console.log(cardHtml)
+			cardsHtml += cardHtml
+			card_rendered += 1
+		}
+		
+		let headerChange = document.getElementById('main__header')
+		
+		let footerLeft = document.getElementById('footer--left')
+		let footerLeftChange = document.getElementById('footer--left--text')
+		let footerLeftCount = document.getElementById('footer--left--cnt')
+		
+		let selectedOrder = 0
+		
+		for(let i = 0; i<ordersDraw.length; i++) {
+			if(ordersDraw[i].selected == true) {
+				selectedOrder++;
+			} 
+		}
+		
+		if(selectedOrder > 0) {
+			headerChange.innerHTML = '실적입력'
+			footerLeftChange.innerHTML = '작업시작'
+			footerLeftCount.innerHTML = selectedOrder
+			
+			footerLeftCount.style.cssText = `
+				font-size: 2rem;
+				color: white;
+				border-radius: 20px;
+				background-color: gray;
+				width: 70px;
+				height: 45px;
+			`
+		}
+		else if (selectedOrder <= 0) {
+			headerChange.innerHTML = '작업목록'
+			footerLeftChange.innerHTML = '실적입력'
+			footerLeftCount.innerHTML = ''
+			
+			
+			footerLeftCount.style.cssText = null
+		}
+		
+		//
+		elemCardContianer.innerHTML += cardsHtml
+		//
+		// pagination
+		//
+		let formatPage = `<li id="page-{page}" {option} onclick="selectPage({page})">{page}</li>`
+		let pageHtml = ""
+		let page_render = 0
+		while(page_render < totalPage) {
+			let htmlStack = formatPage.replaceAll("{page}", page_render + 1)
+			if(selectedPage==page_render + 1)
+				htmlStack = htmlStack.replace("{option}", 'class="selected"')
+			else
+				htmlStack = htmlStack.replace("{option}", "")
+			//
+			// console.log('Log>>> (render) ')
+			// console.log(htmlStack)
+			pageHtml += htmlStack
+			//
+			page_render += 1
+		}
+		elemPagination.innerHTML =
+			'<li onclick="pageBefore()"><</li>' +
+			pageHtml +
+			'<li onclick="pageNext()">></li>'
+	}
+	//
+	// var formatCard =
+	// `<div class="orderlist">
+    // 	<input type="radio" class="orderlist--radiobtn" />
+    //    <div class='orderlist--container'>
+    //    	<div class="orderlist--status">	<p>{state}READY</p></div>
+    //       	<p class="orderlist--number">{order_number}</p>
+    //    </div>
+    // </div>`;
+	//
+	var formatCard =
+	`<div class="orderlist">
+    	<input type="radio" class="orderlist--radiobtn"/>
+       <div class='orderlist--container'>
+       	<div class="orderlist--status">	<p>{state}</p></div>
+          	<p class="orderlist--number">{order_number}</p>
+          	<p class="orderlist--number gop">{GOP}</p>
+       </div>
+    </div>`;
+	//
+	window.onload = function() {
+		truncateTagHistory()
+		fetchOrders()
+		render()
+	}
+	//
+	function getClock() {
+		let currentTime = new Date()
+		let elemCalander = document.getElementById('clock')
+		let strCalander = currentTime.getFullYear() + '.'
+		+ currentTime.getMonth().toString().padStart(2, '0') + '.'
+		+ currentTime.getDate().toString().padStart(2, '0')
+		let strClock = currentTime.getHours().toString().padStart(2, '0') + ':'
+		+ currentTime.getMinutes().toString().padStart(2, '0')
+		+ ':' + currentTime.getSeconds().toString().padStart(2, '0')
+		elemCalander.innerText = strCalander + ' | ' + strClock
+	}
+	//
+	setInterval(getClock, 1000);
+	//
+	window.addEventListener("keypress", function (event) {
+		//
+		if (event.defaultPrevented)
+			return
+		//
+		console.log('LOG>>> (event key) ', event.key)
+		switch (event.key) {
+			case "r":
+				console.log('LOG>>> (event) key r pressed')
+				console.log('LOG>>> (state) search tagged RFID orders')
+				fetchTagOrders()
+				render()
+				break
+			case "1":
+				console.log('LOG>>> (event) key 1 pressed')
+				console.log('LOG>>> (RFID tagging) 000000')
+				rfidTagging('200943181')
+				render()
+				break
+			case "2":
+				console.log('LOG>>> (event) key 2 pressed')
+				console.log('LOG>>> (RFID tagging) 000000')
+				rfidTagging('200943237')
+				render()
+				break
+			default:
+				return
+		}
+		event.preventDefault();
+	}, true);
+	
+	</script>

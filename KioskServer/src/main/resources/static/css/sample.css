@@ -1,0 +1,262 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 1920px;
+  max-width: 1080px;
+  width: 1080px;
+}
+
+
+header {
+  padding: 0 50px 0 50px;
+  display: flex;
+  align-items: center;
+  max-width: 1080px;
+  height: 140px;
+  background-color: black;
+  justify-content: space-between;
+  color: white;
+  
+}
+
+span {
+  margin: 0 0 0 12px;
+  font-family: NotoSansCJKKR;
+  font-size: 42px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -1.05px;
+  text-align: center;
+  color: #313b44;
+}
+
+p{
+	margin: 0;
+	padding: 0;
+}
+
+/* TOP */
+.logo_default {
+  width: 100px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.header_time {
+  margin: 38px 20px 0 380px;
+  font-family: Roboto;
+  font-size: 36px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  text-align: right;
+  color: #fff;
+}
+
+.logo_home {
+  margin-left: 24px;
+}
+
+.main__top {
+  display: flex;
+  width: auto;
+  height: 150px;
+  margin: 0 50px 0 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main__top--left {
+  display: flex;
+  align-items: center;
+}
+
+.main__top--right {
+  display: flex;
+  align-items: end;
+}
+
+.BG {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 240px;
+  height: 70px;
+  margin-left: 20px;
+  padding: 8px 12px 8px 12px;
+  border-radius: 16px;
+  background-color: #313b44;
+}
+
+/* MAIN */
+.main__container {
+  padding: 0 50px 0 50px;
+}
+
+.main__container--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main__container--header .left {
+  margin: 10px 0 20px 0;
+  font-family: NotoSansCJKKR;
+  font-size: 46px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -1.15px;
+  text-align: center;
+  color: #000;
+}
+
+.main__container--header .right {
+  mix-blend-mode: multiply;
+  font-family: NotoSansCJKKR;
+  font-size: 30px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.67;
+  letter-spacing: normal;
+  text-align: right;
+  color: #000;
+}
+
+.main__container--body {
+  height: 1250px;
+  align-items: center;
+  justify-items: center;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border-radius: 20px;
+}
+
+/* FOOTER */
+
+.main__container--footer {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+}
+.footer__btn {
+  width: 42%;
+  margin-top: 30px;
+  padding: 20px 25px;
+  border-radius: 20px;
+  border: 2px solid #313b44;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:white;
+}
+.footer__btn:first-child {
+	background-color:black;
+}
+.footer__btn:first-child span {
+	color: white;
+}
+/* Order list */
+
+.orderlist {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  border-radius: 20px;
+  border: solid 1px #ccd1d9;
+  background-color: #fff;
+}
+
+.orderlist.selected {
+	border: none;
+	box-shadow: 0 0 0 5px #0075ff inset; 
+}
+
+.orderlist--container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+
+}
+.orderlist--radiobtn {
+  position: absolute;
+  top: 5%; 
+  right: 3%;
+  border: 0px;
+  width: 20%;
+  height: 2.5em;
+}
+
+.orderlist--status {
+  width: 120px;
+  height: 120px;
+  background-size: 100%;
+  background-image: url('/img/circular_bar.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.orderlist--status p{
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid lightgray;
+}
+
+.orderlist--number {
+  margin-top: 0.1em;
+  text-align: center;
+  color: #21282f;
+  font-family: Roboto;
+  font-size:20px;
+}
+
+span.header  {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0);
+  font-family: NotoSansCJKKR;
+  width: 156px;
+  font-size: 30px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  text-align: center;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.pagination__container {
+  margin: 0;
+  padding: 0;
+  margin: 1rem 0 1rem 0;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__container li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.pagination__container li.selected {
+  border-radius: 10px;
+  background-color: #ececec;
+}

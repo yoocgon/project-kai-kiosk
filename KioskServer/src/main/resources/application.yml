@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/db_kai_kiosk
-    username: gony
-    password: asdf
+    username: kai
+    password: kai1234
   devtools:
     livereload:
        enabled: true

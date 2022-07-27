@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Spring boot</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/sample.css}" />
+	<!--<link rel="stylesheet" type="text/css" href="css/sample.css?after" />-->
+</head>
+
+<body>
+
+	<script>
+		//
+		var pageData = ''
+		var selectedPage = 1
+		var totalPage = 1
+		//
+		function fetchOrders() {
+			// //
+			// console.log('LOG>>> (func) fetchOrders')
+			// //
+			// const data = {
+			// 	request: 'orders'
+			// }
+			// //
+			// const url = 'http://localhost:8080/api/orders'
+			// //
+			// fetch(url, {
+			// 	method: 'POST',
+			// 	headers: {'Content-Type': 'application/json', },
+			// 	body: JSON.stringify(data)
+			// }).then((response) => {
+			// 	return response.json()
+			// }).then((data) => {
+			// 	console.log('LOG>>> (data)')
+			// 	console.log(data)
+			// 	pageData = data
+			// }).catch((error) => {
+			// 	console.error('실패:', error)
+			// })
+			//
+			pageData = {
+				orders: [
+					{ order_number: '200943174', state: 'READY', selected: false },
+					{ order_number: '200943175', state: 'READY', selected: false },
+					{ order_number: '200943176', state: 'READY', selected: false },
+					{ order_number: '200943177', state: 'READY', selected: false },
+					{ order_number: '200943178', state: 'READY', selected: false },
+					{ order_number: '200943179', state: 'READY', selected: false },
+					{ order_number: '200943180', state: 'READY', selected: false },
+					{ order_number: '200943181', state: 'READY', selected: false },
+					{ order_number: '200943182', state: 'READY', selected: false },
+					{ order_number: '200943183', state: 'READY', selected: false },
+					{ order_number: '200943184', state: 'READY', selected: false },
+					{ order_number: '200943185', state: 'READY', selected: false },
+					{ order_number: '200943186', state: 'READY', selected: false },
+					{ order_number: '200943187', state: 'READY', selected: false },
+					{ order_number: '200943188', state: 'READY', selected: false },
+					{ order_number: '200943218', state: 'READY', selected: false },
+					{ order_number: '200943219', state: 'READY', selected: false },
+					{ order_number: '200943220', state: 'READY', selected: false },
+					{ order_number: '200943221', state: 'READY', selected: false },
+					{ order_number: '200943222', state: 'READY', selected: false },
+					{ order_number: '200943223', state: 'READY', selected: false },
+					{ order_number: '200943224', state: 'READY', selected: false },
+					{ order_number: '200943225', state: 'READY', selected: false },
+					{ order_number: '200943226', state: 'READY', selected: false },
+					{ order_number: '200943227', state: 'READY', selected: false },
+					{ order_number: '200943228', state: 'READY', selected: false },
+					{ order_number: '200943229', state: 'READY', selected: false },
+					{ order_number: '200943230', state: 'READY', selected: false },
+					{ order_number: '200943231', state: 'READY', selected: false },
+					{ order_number: '200943232', state: 'READY', selected: false },
+					{ order_number: '200943233', state: 'READY', selected: false },
+					{ order_number: '200943234', state: 'READY', selected: false },
+					{ order_number: '200943235', state: 'READY', selected: false },
+					{ order_number: '200943236', state: 'READY', selected: false },
+					{ order_number: '200943237', state: 'READY', selected: false },
+					{ order_number: '200943238', state: 'READY', selected: false },
+					{ order_number: '200943239', state: 'READY', selected: false },
+					{ order_number: '200943240', state: 'READY', selected: false },
+					{ order_number: '200943241', state: 'READY', selected: false },
+					{ order_number: '200943242', state: 'READY', selected: false },
+					{ order_number: '200943243', state: 'READY', selected: false },
+					{ order_number: '200943244', state: 'READY', selected: false },
+					{ order_number: '200943245', state: 'READY', selected: false },
+					{ order_number: '200943246', state: 'READY', selected: false },
+					{ order_number: '200943247', state: 'READY', selected: false },
+					{ order_number: '200943248', state: 'READY', selected: false },
+					{ order_number: '200943249', state: 'READY', selected: false },
+					{ order_number: '200943250', state: 'READY', selected: false },
+					{ order_number: '200943251', state: 'READY', selected: false },
+					{ order_number: '200943252', state: 'READY', selected: false },
+					{ order_number: '200943253', state: 'READY', selected: false },
+					{ order_number: '200943254', state: 'READY', selected: false },
+					{ order_number: '200943255', state: 'READY', selected: false },
+					{ order_number: '200943256', state: 'READY', selected: false },
+					{ order_number: '200943257', state: 'READY', selected: false },
+					{ order_number: '200943258', state: 'READY', selected: false },
+					{ order_number: '200943259', state: 'READY', selected: false },
+					{ order_number: '200943260', state: 'READY', selected: false },
+					{ order_number: '200944729', state: 'READY', selected: false },
+					{ order_number: '200944730', state: 'READY', selected: false }
+				]
+			}
+		}
+
+			// //
+			// function rfidTagging(id){
+			// 	//
+			// 	console.log('Log>>> (func) rfidTagging')
+			// 	//
+			// 	let orders = pageData['orders']
+			// 	orders.forEach(order => {
+			// 		if (order['order_number'] == id) {
+			// 
+			// 			console.log(element)
+			// 		}
+			// 	})
+			// }
+			//
+			function btnHome() {
+				//
+				console.log('Log>>> (func) btnHome')
+			}
+			//
+			function btnManageWorker() {
+				//
+				console.log('Log>>> (func) btnManageWorker')
+			}
+			//
+			function btnTaskCenter() {
+				//
+				console.log('Log>>> (func) btnTaskCenter')
+			}
+			//
+			function pageBefore() {
+				//
+				console.log('Log>>> (func) pageBefore')
+				//
+				selectedPage = selectedPage - 1
+				if (selectedPage < 1)
+					selectedPage = 1
+				console.log('Log>>> (selected page) ', selectedPage)
+				render()
+			}
+			//
+			function pageNext() {
+				//
+				console.log('Log>>> (func) pageNext')
+				//
+				selectedPage = selectedPage + 1
+				if (selectedPage > totalPage)
+					selectedPage = totalPage
+				console.log('Log>>> (selected page) ', selectedPage)
+				render()
+			}
+			//
+			function selectPage(num) {
+				//
+				console.log('Log>>> (func) selectPage')
+				//
+				selectedPage = num
+				console.log('Log>>> (num) ', selectedPage)
+				render()
+			}
+			//
+			function render() {
+				//
+				console.log('Log>>> (func) render')
+				//
+				let elemCardContianer = document.getElementById("workList")
+				let elemPagination = document.getElementById("pagination")
+				let elemTotalOrders = document.getElementById("total")
+				elemCardContianer.innerHTML = ''
+				elemPagination.innerHTML = ''
+				//
+				// render cards
+				//
+				let cards = pageData['orders']
+				// let card_cnt = cards.length
+				elemTotalOrders.textContent = "총 작업 건수 " + cards.length + " 건"
+				let pages = cards.length / 20
+				totalPage = parseInt(pages + 1)
+				console.log('Log>>> (pages) ', pages)
+				console.log('Log>>> (total pages) ', totalPage)
+				//
+				let card_render = 0
+				while (card_render < 20) {
+					if ((selectedPage - 1) * 20 + card_render >= cards.length)
+						break
+					//
+					let card = cards[(selectedPage - 1) * 20 + card_render]
+					let cardHtml = formatCard.replace('{order_number}', card['order_number'])
+					cardHtml = cardHtml.replace('{state}', card['state'])
+					// console.log('Log>>> (render) ')
+					// console.log(cardHtml)
+					elemCardContianer.innerHTML += cardHtml
+					card_render += 1
+				}
+				//
+				// pagination
+				//
+				let formatPage = `<li id="page-{page}" {option} onclick="selectPage({page})">{page}</li>`
+				let pageHtml = ""
+				let page_render = 0
+				while (page_render < pages) {
+					let htmlStack = formatPage.replaceAll("{page}", page_render + 1)
+					if (selectedPage == page_render + 1)
+						htmlStack = htmlStack.replace("{option}", 'class="selected"')
+					else
+						htmlStack = htmlStack.replace("{option}", "")
+					//
+					console.log('Log>>> (render) ')
+					console.log(htmlStack)
+					pageHtml += htmlStack
+					//
+					page_render += 1
+				}
+				elemPagination.innerHTML =
+					'<li onclick="pageBefore()"><</li>' +
+					pageHtml +
+					'<li onclick="pageNext()">></li>'
+			}
+			//
+			// var formatCard = 
+			// `<div class="orderlist">
+			// 	<input type="radio" class="orderlist--radiobtn" />
+			//    <div class='orderlist--container'>
+			//    	<div class="orderlist--status">	<p>{state}READY</p></div>    
+			//       	<p class="orderlist--number">{order_number}</p>
+			//    </div>
+			// </div>`;
+			//
+			var formatCard =
+			`<div class="orderlist">
+				<input type="radio" class="orderlist--radiobtn" />
+		    	<div class='orderlist--container'>
+			   		<div class="orderlist--status">	<p>{state}</p></div>    
+				  	<p class="orderlist--number">{order_number}</p>
+		   		</div>
+			</div>`;
+			//
+			window.onload = function () {
+				fetchOrders()
+				render()
+			}
+			//
+			function getClock() {
+				let currentTime = new Date()
+				let elemCalander = document.getElementById('clock')
+				let strCalander = currentTime.getFullYear() + '.'
+					+ currentTime.getMonth().toString().padStart(2, '0') + '.'
+					+ currentTime.getDate().toString().padStart(2, '0')
+				let strClock = currentTime.getHours().toString().padStart(2, '0') + ':'
+					+ currentTime.getMinutes().toString().padStart(2, '0')
+					+ ':' + currentTime.getSeconds().toString().padStart(2, '0')
+				elemCalander.innerText = strCalander + ' | ' + strClock
+			}
+			//
+			setInterval(getClock, 1000);
+			//
+			//
+			window.addEventListener("keypress", function (event) {
+				//
+				if (event.defaultPrevented)
+					return
+				//
+				switch (event.key) {
+					case "1":
+						console.log('LOG>>> (event) key 1 pressed')
+						console.log('LOG>>> (RFID tagging) 000000')
+						rfidTagging('')
+					case "2":
+						console.log('LOG>>> (event) key 2 pressed')
+						console.log('LOG>>> (RFID tagging) 000000')
+						rfidTagging('')
+					default:
+						return
+				}
+				event.preventDefault();
+			}, true);
+		//
+	</script>
+</body>
+
+</html>

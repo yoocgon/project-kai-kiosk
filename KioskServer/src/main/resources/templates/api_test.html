@@ -23,13 +23,15 @@
 
 <body>
 
+	<!-- ########################################################################################################################### -->
+
 	<div class='card'>
-		<h1>Step 1. API Test Get All</h1>
+		<h1>TEST-1. [Get] JPA Select All</h1>
 		<h2>get kiosk/test/all</h2>
 		<pre id='pre-step-1'>
 {
-	"result":true,
-	"count":42
+	"result": true,
+	"count": 42
 }
 		</pre>
 		<pre id='pre-result-1'></pre>
@@ -39,7 +41,7 @@
 	<script>
 		//
 		function getTestAll() {
-			console.log('API TEST>>> (Step 2. RFID Tag 수신)')
+			console.log('API TEST>>> TEST-1. [Get] JPA Select All')
 			let textJson = document.getElementById('pre-step-1').textContent
 			console.log('API TEST>>> (text json)')
 			console.log(textJson)
@@ -66,15 +68,14 @@
 		}		
 	</script>
 
-
-
+	<!-- ########################################################################################################################### -->
 
 	<div class='card'>
-		<h1>Step 2. json 수신</h1>
+		<h1>TEST-2. [POST] Send JSON then No Response</h1>
 		<pre id='pre-step-2'>
 {
-	"result":true,
-	"count":42
+	"result": true,
+	"count": 42
 }
 		</pre>
 		<pre id='pre-result-2'></pre>
@@ -91,7 +92,42 @@
 			let data = JSON.parse(textJson)
 			console.log('API TEST>>> (send json)')
 			console.log(data)
-			let url = 'http://localhost:8080/kiosk/test/post'
+			let url = 'http://localhost:8080/kiosk/test/post-json'
+			fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})	
+		}
+	</script>
+
+	<!-- ########################################################################################################################### -->
+
+	<div class='card'>
+		<h1>TEST-3. [POST] Send JSON then No Response</h1>
+		<pre id='pre-step-3'>
+{
+	"result": true,
+	"count": 42
+}
+		</pre>
+		<pre id='pre-result-3'></pre>
+		<input type='button' value='send' onclick='postTest2()' />
+	</div>
+
+	<script>
+		//
+		function postTest2() {
+			console.log('API TEST>>> TEST-2. [POST] Send JSON then No Response')
+			let textJson = document.getElementById('pre-step-3').textContent
+			console.log('API TEST>>> (text json)')
+			console.log(textJson)
+			let data = JSON.parse(textJson)
+			console.log('API TEST>>> (send json)')
+			console.log(data)
+			let url = 'http://localhost:8080/kiosk/test/post-json-2'
 			fetch(url, {
 				method: 'POST',
 				headers: {
@@ -105,53 +141,44 @@
 			}).then((data) => {
 				console.log('API TEST>>> (recive)')
 				console.log(data)
-				let textJson = document.getElementById('input-step-2').textContent = data
+				let textJson = document.getElementById('pre-result-3').textContent = JSON.stringify(data)
 			}).catch((error) => {
 				console.error('실패:', error)
 			})
 		}		
 	</script>
 
-
-
+	<!-- ########################################################################################################################### -->
 
 
 	<div class='card'>
-		<h1>Step 2. RFID Tag 수신</h1>
-		<pre id='pre-step-3'>
+		<h1>TEST-4. [POST] JSON JPA Inserts</h1>
+		<pre id='pre-step-4'>
 {
-	"result":true,
-	"count":42
+	"messages": ["message 1", "message 2", "message 3"]
 }
 		</pre>
-		<pre id='pre-result-3'></pre>
-		<input type='button' value='send' onclick='loadPageIndex()' />
+		<pre id='pre-result-4'></pre>
+		<input type='button' value='send' onclick='postJsonInsertTest()' />
 	</div>
 
 	<script>
 		//
-		function loadPageIndex() {
-			console.log('API TEST>>> (Step 3. RFID Tag 수신)')
-			let textJson = document.getElementById('pre-step-3').textContent
+		function postJsonInsertTest() {
+			console.log('API TEST>>> TEST-4. [POST] Send JSON then No Response')
+			let textJson = document.getElementById('pre-step-4').textContent
 			console.log('API TEST>>> (text json)')
 			console.log(textJson)
 			let data = JSON.parse(textJson)
 			console.log('API TEST>>> (send json)')
 			console.log(data)
-			let url = 'http://localhost:8080/kiosk/test/all'
-			// fetch(url, {
-			//	method: 'GET',
-			//	headers: {
-			//		'Content-Type': 'application/json',
-			//	},
-			//	body: JSON.stringify(data),
-			// })
-			//
+			let url = 'http://localhost:8080/kiosk/test/insert'
 			fetch(url, {
-				method: 'GET',
-				mode: 'no-cors',
-				cache: 'no-cache',
-				credentials: 'same-origin'
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
 			}).then((response) => {
 				console.log('API TEST>>> (response)')
 				console.log(response)
@@ -159,12 +186,14 @@
 			}).then((data) => {
 				console.log('API TEST>>> (recive)')
 				console.log(data)
-				let textJson = document.getElementById('input-step-3').textContent = data
+				let textJson = document.getElementById('pre-result-4').textContent = JSON.stringify(data)
 			}).catch((error) => {
 				console.error('실패:', error)
 			})
 		}		
 	</script>
+
+	<!-- ########################################################################################################################### -->
 
 </body>
 

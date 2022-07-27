@@ -1,185 +1,167 @@
 
 
--- public.tb_test definition
 
--- Drop table
 
--- DROP TABLE public.tb_test;
 
-CREATE TABLE public.tb_test (
+--
+create table db_kai_kiosk.public.tb_test ( 
+	id serial4 not null, 
+	message varchar(100) null, 
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
+);
+
+-- 
+DROP TABLE tb_login_history;
+
+CREATE TABLE tb_login_history (
 	id serial4 NOT NULL,
-	message varchar(100) NULL,
-	create_dt timestamp NULL DEFAULT now(),
-	update_dt timestamp NULL DEFAULT now(),
-	CONSTRAINT tb_test_pkey PRIMARY KEY (id)
+	kiosk_id text NOT NULL,
+	employee_id text NOT NULL,
+	ip_addr text NOT NULL,
+	device_id text NOT NULL,
+	login_dt timestamp NOT NULL DEFAULT now(),
+	deleted bool NOT NULL DEFAULT false,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp NULL
 );
 
-CREATE TABLE public.	tb_kiosk_job_list
-(
-    idx integer NOT NULL,
-    offer_status character varying(20) NOT NULL,
-    priority integer NOT NULL,
-    group_id text,
-    order_number character varying(20) NOT NULL,
-    gop_number character varying(10) NOT NULL,
-    workings character varying(10) NOT NULL,
-    part_number character varying(20) NOT NULL,
-    proc_start timestamp with time zone NOT NULL,
-    proc_end timestamp with time zone NOT NULL,
-    target_result double precision NOT NULL,
-    real_result double precision NOT NULL,
-    worker character varying(20) NOT NULL,
-    task_center character varying(100) NOT NULL,
-    PRIMARY KEY (idx)
+--
+DROP TABLE tb_tag_history
+
+CREATE TABLE tb_tag_history (
+	id serial4 NOT NULL,
+	kiosk_id text NOT NULL,
+	ip_addr text NOT NULL,
+	device_id text NOT NULL,
+	device_type text NOT null,
+	contents text not null,
+	tag_dt timestamp NOT NULL DEFAULT now(),
+	deleted bool NOT NULL DEFAULT false,
+	create_dt timestamp NOT NULL DEFAULT now(),
+	update_dt timestamp NOT NULL DEFAULT now(),
+	delete_dt timestamp NULL
 );
 
 
 
 
-CREATE TABLE public.tb_install_device
-(
-    idx integer NOT NULL,
-    install_pos character varying(256) NOT NULL,
-    install_desc character varying(256) NOT NULL,
-    PRIMARY KEY (idx)
+-- -------------------------------------------------------------------------------------------
+-- task order
+-- -------------------------------------------------------------------------------------------
+
+create table public.tb_task_order_list (
+	task_order_id text not null,
+	gop text not null,
+	workspace text not null,
+	part_number text not null,
+	start_process timestamp null,
+	end_process timestamp null,
+	target_result text null,
+	real_result text null,
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_kiosk_setting_info
-(
-    idx integer NOT NULL,
-    created timestamp with time zone NOT NULL,
-    updated timestamp with time zone NOT NULL,
-    serial_num character varying(20) NOT NULL,
-    ip_address character varying(20) NOT NULL,
-    install_pos character varying(256) NOT NULL,
-    PRIMARY KEY (idx)
+drop table public.tb_task_order_list;
+-- -------------------------------------------------------------------------------------------
+-- kiosk
+-- -------------------------------------------------------------------------------------------
+
+create table public.tb_kiosk_info (
+	kiosk_id text not null,	
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_log_type_def
-(
-    idx integer NOT NULL,
-    log_type integer NOT NULL,
-    log_desc character varying(256) NOT NULL,
-    PRIMARY KEY (idx)
+drop table public.tb_kiosk_info;
+-- -------------------------------------------------------------------------------------------
+-- job order tagging (RFID, Barcode, Manual)
+-- -------------------------------------------------------------------------------------------
+
+create table public.tb_task_order_tag_history (
+	kiosk_id text not null,
+	task_order_id text not null,
+	tag_uuid text not null,
+	device_type text not null,
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_sap_group
-(
-    "groupId" text NOT NULL,
-    PRIMARY KEY ("groupId")
+drop table public.tb_task_order_tag_history;
+-- -------------------------------------------------------------------------------------------
+-- worker order tagging (NFC)
+-- -------------------------------------------------------------------------------------------
+
+create table public.tb_worker_tag_history (
+   kiosk_id text not null,
+	tag_uuid text not null,
+	employee_id text not null,
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_sap_user
-(
-    "userId" text NOT NULL,
-    name text NOT NULL,
-    group_id text,
-    PRIMARY KEY ("userId")
+drop table public.tb_order_tag_history;
+-- -------------------------------------------------------------------------------------------
+-- workers
+-- -------------------------------------------------------------------------------------------
+
+create table public.tb_worker_group (
+	worker_group_id serial4 not null,
+	kiosk_id text not null,
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_scan_log
-(
-    idx integer NOT NULL,
-    created timestamp with time zone NOT NULL,
-    tag_id character varying(20) NOT NULL,
-    tag_text character varying(256) NOT NULL,
-    ip_address character varying(20) NOT NULL,
-    serial_num character varying(20) NOT NULL,
-    PRIMARY KEY (idx)
+drop table public.tb_worker_group;
+
+create table public.tb_worker (
+	employee_id text not null,
+	worker_group_id text not null,
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_scan_log_barcode
-(
-    idx integer NOT NULL,
-    created timestamp with time zone NOT NULL,
-    tag_id character varying(20) NOT NULL,
-    tag_text character varying(256) NOT NULL,
-    ip_address character varying(20) NOT NULL,
-    serial_num character varying(20) NOT NULL,
-    PRIMARY KEY (idx)
+drop table public.tb_worker_group;
+-- -------------------------------------------------------------------------------------------
+-- test
+-- -------------------------------------------------------------------------------------------
+
+create table db_kai_kiosk.public.tb_test ( 
+	id serial4 not null, 
+	message varchar(100) null, 
+	deleted varchar not null default false,
+	create_dt timestamp not null default now(),
+	update_dt timestamp not null default now(),
+	delete_dt timestamp default null
 );
 
-CREATE TABLE public.tb_scan_log_barcode_orders
-(
-    id bigint NOT NULL,
-    scan_log_barcode_id integer NOT NULL,
-    kiosk_job_list_id integer NOT NULL,
-    PRIMARY KEY (id)
+drop table db_kai_kiosk.public.tb_test;
+
+insert
+	into
+	public.tb_test(
+message,
+	create_dt,
+	update_dt)
+values(
+'',
+now(),
+now()
 );
-
-CREATE TABLE public.tb_scan_log_nfc
-(
-    idx integer NOT NULL,
-    created timestamp with time zone NOT NULL,
-    tag_id character varying(20) NOT NULL,
-    tag_text character varying(256) NOT NULL,
-    ip_address character varying(20) NOT NULL,
-    serial_num character varying(20) NOT NULL,
-    user_id text,
-    PRIMARY KEY (idx)
-);
-
-CREATE TABLE public.tb_scan_log_orders
-(
-    id bigint NOT NULL,
-    scan_log_id integer NOT NULL,
-    kiosk_job_list_id integer NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE public.tb_system_log
-(
-    idx integer NOT NULL,
-    created timestamp with time zone NOT NULL,
-    log_memo text NOT NULL,
-    ip_address character varying(20) NOT NULL,
-    log_type_id integer,
-    PRIMARY KEY (idx)
-);
- 
-ALTER TABLE public.tb_kiosk_job_list
-    ADD FOREIGN KEY (group_id)
-    REFERENCES public.kai_project_sap_group ("groupId")
-    NOT VALID;
-
-
-ALTER TABLE public.tb_sap_user
-    ADD FOREIGN KEY (group_id)
-    REFERENCES public.kai_project_sap_group ("groupId")
-    NOT VALID;
-
-
-ALTER TABLE public.tb_scan_log_barcode_orders
-    ADD FOREIGN KEY (kiosk_job_list_id)
-    REFERENCES public.kai_project_kiosk_job_list (idx)
-    NOT VALID;
-
-
-ALTER TABLE public.tb_scan_log_barcode_orders
-    ADD FOREIGN KEY (scan_log_barcode_id)
-    REFERENCES public.kai_project_scan_log_barcode (idx)
-    NOT VALID;
-
-
-ALTER TABLE public.tb_scan_log_nfc
-    ADD FOREIGN KEY (user_id)
-    REFERENCES public.kai_project_sap_user ("userId")
-    NOT VALID;
-
-
-ALTER TABLE public.tb_scan_log_orders
-    ADD FOREIGN KEY (kiosk_job_list_id)
-    REFERENCES public.kai_project_kiosk_job_list (idx)
-    NOT VALID;
-
-
-ALTER TABLE public.tb_scan_log_orders
-    ADD FOREIGN KEY (scan_log_id)
-    REFERENCES public.kai_project_scan_log (idx)
-    NOT VALID;
-
-
-ALTER TABLE public.tb_system_log
-    ADD FOREIGN KEY (log_type_id)
-    REFERENCES public.kai_project_log_type_def (idx)
-    NOT VALID;
+-- -------------------------------------------------------------------------------------------

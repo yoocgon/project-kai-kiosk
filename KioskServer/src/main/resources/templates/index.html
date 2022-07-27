@@ -1,57 +1,208 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>index</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/index.css}" />
-	<script type="text/javascript" th:src="@{/js/index.js}"></script>
-
-	<style>
-		.menu-bar {
-			display: flex;
-			flex-flow: row wrap;
-			background-color: black;
-			color: white;
-		}
-
-		.menu-bar-left {
-			display: flex;
-		}
-
-		.menu-bar-right {
-			margin-left: auto;
-		}
-	</style>
-
+	<meta charset="UTF-8" />
+	<title>Spring boot</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/sample.css}" />
+	<!--link rel="stylesheet" type="text/css" href="css/sample.css?after" />-->
 </head>
 
 <body>
-
-	<div class='menu-bar'>
-		<div class='menu-bar-left'>
-			<img width='80px' src='../static/img/logo/top.webp' />
+	<header>
+		<img class="logo_default" src="/img/logo.png" />
+		<div style="display: flex; align-items: flex-end">
+			<p id='clock' class="header_time"></p>
+			<img class="logo_home" src="/img/logo_home.png" alt="" />
 		</div>
-		<div class='menu-bar-right'>
-			<span>2021.20.24 | 13:28:30</span>
-			<input id='btn-home' type='button' onclick='btnHome()' value='🏠' />
+	</header>
+	<main>
+		<div style="position: relative;">
+			<img class="kai__main" src="/img/kai_main.png" alt="">
+			<div class="kai__title">
+				<span class="main__title">
+					CREATING
+					HISTORY IN
+					AEROSPACE
+				</span>
+				<span class="main__subtitle">
+					KAI가 지금까지 걸어온 길이 곧 대한민국
+					항공우주산업의 역사입니다.
+				</span>
+			</div>
 		</div>
-	</div>
-
-	<br>
-	<br>
-
-	<div id='img'>
-		<img id='s' width='100%' src='../static/img/photo/kai.jpeg' />
-	</div>
-
-	<br>
-	<br>
-
-	<div id='img'>
-		<img id='s' width='100%' src='../static/img/photo/nfc.jpg' />
-	</div>
-
+		<div class="kai__main--bottom">
+			<img src="/img/button_pop.png" alt="">
+			<img src="/img/logo_nfc.png" alt="" style="width: 360px; height: 272px">
+			<div style="width: 200px">
+				<span class="NFC-">
+					NFC 밴드를
+					인식해주세요
+				</span>
+				<img src="/img/logo_nfc_arrow.png" alt="" style="margin-top:2rem;">
+			</div>
+		</div>
+	</main>
 </body>
 
+
+<script>
+	//
+	window.onload = function() {
+		getClock()
+	}
+	//
+	function getClock() {
+		let currentTime = new Date()
+		let month = (currentTime.getMonth() + 1)
+		
+		let elemCalander = document.getElementById('clock')
+		
+		let strCalander = currentTime.getFullYear() + '.' 
+		+ month.toString().padStart(2, '0') + '.' 
+		+ currentTime.getDate().toString().padStart(2, '0')
+		let strClock = currentTime.getHours().toString().padStart(2, '0') + ':' 
+		+ currentTime.getMinutes().toString().padStart(2, '0') 
+		+ ':' + currentTime.getSeconds().toString().padStart(2, '0')
+		elemCalander.innerText = strCalander + ' | ' + strClock
+	}
+	
+	setInterval(getClock, 1000);
+	
+	function tagNfc() {
+		//
+		console.log('LOG>>> (func) tagNfc')
+		//
+		const data = {
+			ipaddr: "192.168.0.10",
+			serial: "KAI0100101",
+			type: "1",
+			uid: "123456789",
+			data: "X"
+		}
+		//
+		const url = 'http://localhost:8080/api/nfc'
+		//
+		fetch(url, {
+			method: 'POST',
+			// mode: 'no-cors',
+			headers: {'Content-Type': 'application/json', },
+			body: JSON.stringify(data)
+		}).then((response) => {
+			console.log('LOG>>> (response)')
+			console.log(response)
+			return response.json()
+		}).then((data) => {
+			console.log('LOG>>> (data)')
+			console.log(data)
+			console.log('LOG>>> (state) done')
+		}).catch((error) => {
+			console.error('실패:', error)
+		})
+	}
+	//
+	function login() {
+		//
+		console.log('LOG>>> (func) login2')
+		//
+		const url = 'http://localhost:8080/login2'
+		// fetch(url).then((resonpons) => console.log(resonpons))
+		// fetch(url, { method: 'POST' }).then((resonpons) => console.log(resonpons))
+		fetch(url, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json', },
+		}).then((response) => {
+			return response.json()
+		}).then((data) => {
+			console.log('LOG>>> (data)')
+			console.log(data)
+			if (data['result'] == 'success')
+				window.location.href = 'http://localhost:8080/page/orders'
+			console.log('LOG>>> (state) done')
+		}).catch((error) => {
+			console.error('실패:', error)
+		})
+	}
+	//
+	window.addEventListener("keypress", function (event) {
+		//
+		if (event.defaultPrevented)
+			return
+		//
+		switch (event.key) {
+			case "n":
+				console.log('LOG>>> (event) key n pressed')
+				tagNfc()
+				break
+			case "l":
+				console.log('LOG>>> (event) key l pressed')
+				login()
+				break
+			default:
+				return
+		}
+		event.preventDefault();
+	}, true);
+	//
+</script>
+
+
 </html>
+
+<style>
+	.kai__main {
+		width: 1080px;
+		height: 1308px;
+		position: relative;
+	}
+
+	.kai__title {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 17%;
+		right: 7%;
+	}
+
+	.main__title {
+		width: 390px;
+		height: 246px;
+		margin: 0 0 12px;
+		font-family: Roboto;
+		font-size: 70px;
+		font-weight: bold;
+		line-height: 1.14;
+		letter-spacing: -1.75px;
+		text-align: left;
+		color: #fff;
+	}
+
+	.main__subtitle {
+		width: 390px;
+		height: 70px;
+		margin: 12px 0 0;
+		font-family: NotoSansCJKKR;
+		font-size: 21px;
+		line-height: 1.33;
+		letter-spacing: -0.6px;
+		text-align: left;
+		color: #e6e9f4;
+	}
+
+	.kai__main--bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 70px 70px 0px 70px;
+	}
+
+	.NFC- {
+		font-family: NotoSansCJKKR;
+		font-size: 30px;
+		font-weight: 500;
+		line-height: 1.33;
+		letter-spacing: -0.75px;
+		text-align: center;
+		color: #21282f;
+	}
+</style>
